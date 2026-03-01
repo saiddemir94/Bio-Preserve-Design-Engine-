@@ -1,0 +1,7 @@
+{
+  "target_bacteria": "Listeria monocytogenes",
+  "length_range": [15, 30],
+  "charge_range": [3, 9],
+  "hydrophobicity_range": [0.4, 0.65],
+  "key_amino_acids": ["K", "R", "L", "I", "F"]
+}
