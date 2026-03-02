@@ -4,46 +4,49 @@ import joblib
 
 from features.feature_extraction import extract_features
 
-# Biyolojik kuralları yükle
+# Load biological rules
 with open("data/biological_rules.json") as f:
     rules = json.load(f)
 
-# Food context yükle
+# Load food context
 with open("data/food_context.json") as f:
     food = json.load(f)
 
-# Eğitilmiş modeli yükle
+# Load trained model
 model = joblib.load("ml/model.pkl")
 
-# Veritabanı peptitleri yükle
+# Load peptide database
 db = pd.read_csv("data/database_peptides.csv")
 
 
 def passes_biological_rules(features):
-    length_ok = rules["length_range"][0] <= features["length"] <= rules["length_range"][1]
-    charge_ok = rules["charge_range"][0] <= features["net_charge"] <= rules["charge_range"][1]
-    hydro_ok = rules["hydrophobicity_range"][0] <= features["hydrophobic_ratio"] <= rules["hydrophobicity_range"][1]
-    return length_ok and charge_ok and hydro_ok
+    return (
+        rules["length_range"][0] <= features["length"] <= rules["length_range"][1]
+        and rules["charge_range"][0] <= features["net_charge"] <= rules["charge_range"][1]
+        and rules["hydrophobicity_range"][0] <= features["hydrophobic_ratio"] <= rules["hydrophobicity_range"][1]
+    )
 
 
-def passes_food_context(features):
+def check_food_compatibility(features):
+    suitable_foods = []
 
-    # Tuzlu ortam → düşük charge dezavantaj
-    if food["salt_ratio"] > 2:
-        if features["net_charge"] < 3:
-            return False, "Tuzlu ortamda stabil değil"
+    for f in food["food_matrices"]:
 
-    # Asidik ortam → aşırı hidrofobik yapı bozulabilir
-    if food["pH"] < 6:
-        if features["hydrophobic_ratio"] > 0.65:
-            return False, "Asidik ortamda yapısal bozulma riski"
+        ok = True
 
-    # Yağlı ortam → çok düşük hidrofobiklik tutunamaz
-    if food["fat_content"] == "high":
-        if features["hydrophobic_ratio"] < 0.3:
-            return False, "Yağlı ortamda yüzeye tutunamaz"
+        if f["salt_ratio"] > 2 and features["net_charge"] < 3:
+            ok = False
 
-    return True, f"{food['product']} ortamına uygundur"
+        if f["pH"] < 6 and features["hydrophobic_ratio"] > 0.65:
+            ok = False
+
+        if f["fat_content"] == "high" and features["hydrophobic_ratio"] < 0.3:
+            ok = False
+
+        if ok:
+            suitable_foods.append(f["product"])
+
+    return suitable_foods
 
 
 approved = []
@@ -52,24 +55,21 @@ for seq in db["sequence"]:
 
     features = extract_features(seq)
 
-    # 1️⃣ Biyolojik filtre
     if passes_biological_rules(features):
 
-        # 2️⃣ ML değerlendirme
         prediction = model.predict(pd.DataFrame([features]))[0]
 
         if prediction == 1:
 
-            # 3️⃣ Food stabilite kontrolü
-            food_ok, note = passes_food_context(features)
+            foods = check_food_compatibility(features)
 
-            if food_ok:
-                approved.append((seq, features, note))
+            if foods:
+                approved.append((seq, foods))
 
 
 print("\nUygun adaylar:\n")
 
-for seq, feat, note in approved:
+for seq, foods in approved:
     print(seq)
-    print("→", note)
+    print("Uygun olduğu gıdalar:", ", ".join(foods))
     print()
