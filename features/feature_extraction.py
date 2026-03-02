@@ -1,6 +1,5 @@
-# features/feature_extraction.py
 
-# Amino asit yuk bilgileri (basitlestirilmis)
+# Amino asit yuk bilgileri 
 charge_map = {
     'K': 1, 'R': 1, 'H': 1,   # pozitif
     'D': -1, 'E': -1         # negatif
