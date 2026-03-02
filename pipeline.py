@@ -6,22 +6,22 @@ from generator.peptide_generator import generate_peptide
 from features.feature_extraction import extract_features
 
 
-# MBG kurallarını yükle
+import json
+import pandas as pd
+import joblib
+
+from generator.peptide_generator import generate_peptide
+from features.feature_extraction import extract_features
+
+
+# Kuralları yükle
 with open("data/biological_rules.json") as f:
     rules = json.load(f)
 
-# ML veri setini yükle
-df = pd.read_csv("data/amp_dataset.csv")
-
-X = df[["length", "net_charge", "hydrophobic_ratio"]]
-y = df["label"]
-
-# Modeli eğit
-model = RandomForestClassifier(n_estimators=50)
-model.fit(X, y)
+# Eğitilmiş modeli yükle
+model = joblib.load("ml/model.pkl")
 
 
-# Kural kontrol fonksiyonu
 def passes_rules(features):
 
     length_ok = rules["length_range"][0] <= features["length"] <= rules["length_range"][1]
@@ -33,18 +33,14 @@ def passes_rules(features):
 
 approved_peptides = []
 
-for i in range(20):
+for i in range(30):
 
     peptide = generate_peptide(20)
     features = extract_features(peptide)
 
     if passes_rules(features):
 
-        prediction = model.predict([[
-            features["length"],
-            features["net_charge"],
-            features["hydrophobic_ratio"]
-        ]])[0]
+        prediction = model.predict(pd.DataFrame([features]))[0]
 
         if prediction == 1:
             approved_peptides.append((peptide, features))
