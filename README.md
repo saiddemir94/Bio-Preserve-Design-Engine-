@@ -1,5 +1,5 @@
-# Bio-Preserve-Design-Engine-
-(Disiplinler Arası Proje)
+
+(Disiplinler Arası Proje 10)
 
 PROBLEM TANIMI 
 
@@ -15,10 +15,15 @@ Deneme–yanılma temellidir,
 
 Bu durum, gıda endüstrisinde doğal koruyucuların ticarileşmesini ciddi şekilde yavaşlatmaktadır.
 
- Temel problem:
-Doğru doğal antimikrobiyal peptidin keşfi, mevcut yöntemlerle verimsizdir.
 
 PROJENİN ÇÖZÜM YAKLAŞIMI
 
-Bu proje, laboratuvar öncesi aşamada kullanılmak üzere, açık biyolojik veritabanlarını kullanan ve biyolojik kurallarla desteklenmiş hesaplamalı bir karar destek sistemi tasarlamayı amaçlamaktadır.
+Bu proje, antimikrobiyal peptitlerin laboratuvar öncesi değerlendirilmesini sağlayan hesaplamalı bir karar destek sistemi sunmayı amaçlamaktadır.
 
+mevcut peptit verilerini analiz eder,
+
+biyolojik uygunluk kriterlerine göre ön eleme yapar,
+
+makine öğrenmesi modeli ile potansiyel etkinlik tahmini gerçekleştirir,
+
+farklı gıda ortamlarında kullanım uygunluğunu değerlendirir.
