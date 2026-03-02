@@ -1,7 +1,46 @@
 {
-  "product": "Kaşar peyniri",
-  "application": "Ambalaj yüzey kaplama",
-  "pH": 5.4,
-  "temperature": 4,
-  "salt_ratio": 2.1
+  "food_matrices": [
+    {
+      "product": "Peynir",
+      "pH": 5.0,
+      "salt_ratio": 2.5,
+      "temperature": 4,
+      "fat_content": "high"
+    },
+    {
+      "product": "Yoğurt",
+      "pH": 4.5,
+      "salt_ratio": 0.5,
+      "temperature": 4,
+      "fat_content": "medium"
+    },
+    {
+      "product": "Taze Et",
+      "pH": 5.6,
+      "salt_ratio": 1.2,
+      "temperature": 4,
+      "fat_content": "high"
+    },
+    {
+      "product": "Fermente Et (Sucuk)",
+      "pH": 4.8,
+      "salt_ratio": 3.0,
+      "temperature": 8,
+      "fat_content": "high"
+    },
+    {
+      "product": "Meyve Suyu",
+      "pH": 3.8,
+      "salt_ratio": 0.1,
+      "temperature": 10,
+      "fat_content": "low"
+    },
+    {
+      "product": "Bitkisel Protein Bazlı Ürün",
+      "pH": 6.2,
+      "salt_ratio": 0.8,
+      "temperature": 5,
+      "fat_content": "medium"
+    }
+  ]
 }
