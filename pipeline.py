@@ -34,14 +34,20 @@ def check_food_compatibility(features):
 
         ok = True
 
-        if f["salt_ratio"] > 2 and features["net_charge"] < 3:
-            ok = False
+        # Tuzlu ortam → yüksek charge gerekli
+        if f["salt_ratio"] > 2:
+            if features["net_charge"] < 4:
+                ok = False
 
-        if f["pH"] < 6 and features["hydrophobic_ratio"] > 0.65:
-            ok = False
+        # Asidik ortam → kısa peptit avantajlı
+        if f["pH"] < 5:
+            if features["length"] > 22:
+                ok = False
 
-        if f["fat_content"] == "high" and features["hydrophobic_ratio"] < 0.3:
-            ok = False
+        # Yağlı ortam → orta hidrofobiklik gerekli
+        if f["fat_content"] == "high":
+            if not (0.35 <= features["hydrophobic_ratio"] <= 0.6):
+                ok = False
 
         if ok:
             suitable_foods.append(f["product"])
