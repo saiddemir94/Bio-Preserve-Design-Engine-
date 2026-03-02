@@ -1,29 +1,29 @@
-
 (Disiplinler Arası Proje 10)
 
-PROBLEM TANIMI 
+PROBLEM TANIMI
 
-Gıda endüstrisinde mikrobiyal bozulmayı ve patojen kaynaklı riskleri önlemek amacıyla yaygın olarak sentetik kimyasal koruyucular (E-kodlu katkı maddeleri) kullanılmaktadır. Ancak bu maddelerin uzun vadede insan sağlığı, bağırsak mikrobiyotası ve tüketici algısı üzerindeki olumsuz etkileri giderek daha fazla tartışılmaktadır.
+Gıda endüstrisinde, mikrobiyal bozulmayı ve patojen kaynaklı riskleri önlemek için genellikle sentetik kimyasal koruyucular kullanılır. Ancak bu maddelerin uzun vadeli etkileri insan sağlığı, bağırsak mikrobiyotası ve tüketici algısı üzerinde olumsuz sonuçlar doğurmaktadır.
 
-Bu kimyasal koruyuculara doğal alternatifler arasında antimikrobiyal peptitler (AMP’ler) öne çıkmaktadır. AMP’ler bakterileri fiziksel mekanizmalarla etkisiz hale getirebilen doğal moleküllerdir. Ancak:
+Doğal alternatifler arasında antimikrobiyal peptitler öne çıkıyor. Bunlar, bakterileri fiziksel mekanizmalarla etkisiz hale getirebilen doğal moleküllerdir. Ancak:
 
-Uygun AMP’lerin laboratuvar ortamında keşfi:
+Uygun antimikrobiyal peptitlerin laboratuvar ortamında keşfi:
 
-Yüksek maliyetlidir,
-Uzun zaman alır,
-Deneme–yanılma temellidir,
+Pahalıdır,
 
-Bu durum, gıda endüstrisinde doğal koruyucuların ticarileşmesini ciddi şekilde yavaşlatmaktadır.
+Uzun sürer,
 
+Deneme yanılma temellidir,
+
+Bu durum, gıda endüstrisinde doğal koruyucuların geliştirilmesini yavaşlatmaktadır.
 
 PROJENİN ÇÖZÜM YAKLAŞIMI
 
-Bu proje, antimikrobiyal peptitlerin laboratuvar öncesi değerlendirilmesini sağlayan hesaplamalı bir karar destek sistemi sunmayı amaçlamaktadır.
+Bu proje, antimikrobiyal peptitlerin laboratuvar öncesi değerlendirmesini sağlayan bir sistemdir.
 
-mevcut peptit verilerini analiz eder,
+Mevcut peptit verilerini analiz eder,
 
-biyolojik uygunluk kriterlerine göre ön eleme yapar,
+Biyolojik uygunluk kriterlerine göre ön eleme yapar,
 
-makine öğrenmesi modeli ile potansiyel etkinlik tahmini gerçekleştirir,
+Makine öğrenmesi modeli ile tahminleme gerçekleştirir,
 
-farklı gıda ortamlarında kullanım uygunluğunu değerlendirir.
+Farklı gıda ortamlarında kullanım uygunluğunu değerlendirir.
